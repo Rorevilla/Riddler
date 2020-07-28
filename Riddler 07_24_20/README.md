@@ -15,7 +15,7 @@ Taken from
 > or the other, then what is the lowest \>percentage of the popular vote
 > that a candidate can get while still winning the election?
 
-![](final_plot.png)
+![](plot.png)
 
 -----
 
@@ -156,5 +156,5 @@ additional_elements <- additional_elements + draw_label("Candidate B", x = 0.387
 
 #Exporting plot
 final_plot<-additional_elements+draw_plot(a+ theme(plot.margin = margin(t = 0, r = 1.4, b = 0, l = 0, unit = "in")))
-save_plot("final_plot.png",final_plot,base_width=8,base_height=6)
+save_plot("plot.png",final_plot,base_width=8,base_height=6)
 ```

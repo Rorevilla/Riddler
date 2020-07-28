@@ -11,7 +11,7 @@ Taken from [FiveThirtyEight](https://fivethirtyeight.com/features/are-you-a-pinb
 
 >Riddler Township is having its quadrennial presidential election. Each of the town’s 10 “shires” is allotted a certain number of electoral votes: two, plus one additional vote for every 10 citizens (rounded to the nearest 10).<br/>[...]<br/>If there are two candidates running for president of Riddler Township, and every single citizen votes for one or the other, then what is the lowest >percentage of the popular vote that a candidate can get while still winning the election?
 
-![](final_plot.png)
+![](plot.png)
 
 ---
 
@@ -98,7 +98,7 @@ solutions  %<>%  mutate(label=paste(ifelse(winner==1,votes_to_win_shire,0),"/",p
 ```
  
 Finally, the scenarios are plotted and saved.
-```{r output=FALSE, warning =FALSE, message=FALSE}
+```{r output=FALSE, warning =FALSE, message=FALSE,eval=FALSE}
 #Producing base plot
 a <- solutions %>% ggplot(aes(x=shire,y=as.character(solution_number),fill=winner))+
   geom_tile(color="white",size=1)+
@@ -124,7 +124,7 @@ additional_elements <- additional_elements + draw_label("Candidate B", x = 0.387
 
 #Exporting plot
 final_plot<-additional_elements+draw_plot(a+ theme(plot.margin = margin(t = 0, r = 1.4, b = 0, l = 0, unit = "in")))
-save_plot("final_plot.png",final_plot,base_width=8,base_height=6)
+save_plot("plot.png",final_plot,base_width=8,base_height=6)
 ```
 
 

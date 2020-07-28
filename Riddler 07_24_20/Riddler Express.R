@@ -26,7 +26,7 @@ combinations%<>% mutate(total_electoral_votes = ifelse(s1==1,votes[1],0)+
                                                 ifelse(s8==1,votes[8],0)+
                                                 ifelse(s9==1,votes[9],0)+
                                                 ifelse(s10==1,votes[10],0))
-#combinations %<>% filter(total_electoral_votes > Reduce("+",votes)%/%2)
+combinations %<>% filter(total_electoral_votes > Reduce("+",votes)%/%2)
 combinations%<>% mutate(total_population_votes = ifelse(s1==1,population[1]%/%2+1,0)+
                                                   ifelse(s2==1,population[2]%/%2+1,0)+
                                                   ifelse(s3==1,population[3]%/%2+1,0)+
@@ -73,8 +73,9 @@ for (i in seq(0.34,0.87,0.106)) {
 #Adding title
 additional_elements <- additional_elements + draw_label("There are six scenarios where                        wins the election, with only 24.3% of the popular vote", x = 0.5, y = 0.96,colour = "black",fontface="bold",size=12)
 additional_elements <- additional_elements + draw_label("Candidate B", x = 0.3878, y = 0.96,colour = "#F28E2B",fontface="bold",size=12)
+additional_elements <- additional_elements + draw_label("github.com/Rorevilla", x = 0.93, y = 0.1,colour = "gray50",fontface="bold",size=8.5)
 
 #Exporting plot
 final_plot<-additional_elements+draw_plot(a+ theme(plot.margin = margin(t = 0, r = 1.4, b = 0, l = 0, unit = "in")))
-save_plot("final_plot.png",final_plot,base_width=8,base_height=6)
+save_plot("plot.png",final_plot,base_width=8,base_height=6)
 
