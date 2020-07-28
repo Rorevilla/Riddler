@@ -7,3 +7,5 @@
 ![](final_plot.png)
 
 ---
+
+For find the solution to this problem, I will 
