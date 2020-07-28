@@ -4,9 +4,6 @@ author: Rodrigo Revilla
 output: github_document
 ---
 
-
-### Riddler Express 07/24/2020
-
 Taken from [FiveThirtyEight](https://fivethirtyeight.com/features/are-you-a-pinball-wizard/).
 
 >Riddler Township is having its quadrennial presidential election. Each of the town’s 10 “shires” is allotted a certain number of electoral votes: two, plus one additional vote for every 10 citizens (rounded to the nearest 10).<br/>[...]<br/>If there are two candidates running for president of Riddler Township, and every single citizen votes for one or the other, then what is the lowest >percentage of the popular vote that a candidate can get while still winning the election?
@@ -17,7 +14,7 @@ Taken from [FiveThirtyEight](https://fivethirtyeight.com/features/are-you-a-pinb
 
 I will use a brute force method in order to solve this problem. I will consider all the possible combinations for the ten Shires. Each one of them has two possible outcomes (vote for candidate A or candidate B), making a total of  $2^{10}$ = 1,024 combinations 
 
-First, all the necesarry libraries are imported
+First, all the necesarry libraries are imported:
 ```{r eval=FALSE}
 
 library(R.utils)    #for binary conversion
@@ -38,7 +35,7 @@ library(cowplot)    #adding grobs to ggplot
 
 ```
 
-A dataframe containing information for each Shire is generated
+A dataframe containing information for each Shire is generated:
 ```{r}
 shire <- c("Oneshire","Twoshire","Threeshire","Fourshire","Fiveshire","Sixshire","Sevenshire","Eightshire","Nineshire","Tenshire")
 population <- c(11,21,31,41,51,61,71,81,91,101)
@@ -83,7 +80,7 @@ The optimal scenario is selected, by slicing the rows in the dataframe with the 
 combinations %>% top_n(n = -1, wt = total_population_votes)
 136/Reduce("+",population)*100
 ```
- Information is added to the six "optimal" scenarios, including the names of the shires, their population, etc.
+ Information is added to the six "optimal" scenarios, including the names of the shires, their population, etc.:
  
 
 ```{r output=FALSE,warning=FALSE, message=FALSE}
@@ -97,7 +94,7 @@ solutions  %<>%  mutate(label=paste(ifelse(winner==1,votes_to_win_shire,0),"/",p
 
 ```
  
-Finally, the scenarios are plotted and saved.
+Finally, the scenarios are plotted and saved:
 ```{r output=FALSE, warning =FALSE, message=FALSE,eval=FALSE}
 #Producing base plot
 a <- solutions %>% ggplot(aes(x=shire,y=as.character(solution_number),fill=winner))+

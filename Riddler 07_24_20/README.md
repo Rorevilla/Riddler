@@ -2,8 +2,6 @@ Riddler Express 07-27/2020
 ================
 Rodrigo Revilla
 
-### Riddler Express 07/24/2020
-
 Taken from
 [FiveThirtyEight](https://fivethirtyeight.com/features/are-you-a-pinball-wizard/).
 
@@ -24,7 +22,7 @@ consider all the possible combinations for the ten Shires. Each one of
 them has two possible outcomes (vote for candidate A or candidate B),
 making a total of \(2^{10}\) = 1,024 combinations
 
-First, all the necesarry libraries are imported
+First, all the necesarry libraries are imported:
 
 ``` r
 library(R.utils)    #for binary conversion
@@ -34,7 +32,7 @@ library(hrbrthemes) #custom theme for ggplot
 library(cowplot)    #adding grobs to ggplot
 ```
 
-A dataframe containing information for each Shire is generated
+A dataframe containing information for each Shire is generated:
 
 ``` r
 shire <- c("Oneshire","Twoshire","Threeshire","Fourshire","Fiveshire","Sixshire","Sevenshire","Eightshire","Nineshire","Tenshire")
@@ -116,7 +114,7 @@ combinations %>% top_n(n = -1, wt = total_population_votes)
     ## [1] 24.28571
 
 Information is added to the six “optimal” scenarios, including the names
-of the shires, their population, etc.
+of the shires, their population, etc.:
 
 ``` r
 solutions <- combinations %>% top_n(n = -1, wt = total_population_votes)
@@ -128,7 +126,7 @@ solutions  %<>% left_join(shires %>% select(shire,electoral_votes=votes,votes_to
 solutions  %<>%  mutate(label=paste(ifelse(winner==1,votes_to_win_shire,0),"/",population,"\n",ifelse(winner==1,electoral_votes,0),"/",electoral_votes))
 ```
 
-Finally, the scenarios are plotted and saved.
+Finally, the scenarios are plotted and saved:
 
 ``` r
 #Producing base plot
